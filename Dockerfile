@@ -43,6 +43,13 @@ COPY --chown=appuser:appuser . .
 # Run database migrations
 RUN python manage.py migrate
 
+# Create a superuser
+ENV DJANGO_SUPERUSER_PASSWORD=admin
+RUN python manage.py createsuperuser \
+    --no-input \
+    --username=uk_admin \
+    --email=utkarshk384@gmail.com
+
 # Set environment variables to optimize Python
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1 
